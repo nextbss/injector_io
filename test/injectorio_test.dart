@@ -41,9 +41,12 @@ void main() {
         .register( factory( B( A())));
 
     B b1 = get();
+    b1.k = 1;
     B b2 = get();
+    b2.k = 2;
 
-    assert(b1 != b2);
+    assert(b1.k != b2.k);
+    //assert(b1 != b2);
   });
 
   test('reuse class instace between Definitions', () {
