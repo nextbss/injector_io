@@ -22,7 +22,7 @@ import 'module_injector.dart';
 export 'component_binder.dart';
 
 final InjectorIO io = InjectorIO._internal();
-DefinitionRegistry get registry => io.registry;
+DefinitionRegistry get registry => io._registry;
 
 class InjectorIO {
   DefinitionRegistry _registry;
@@ -39,9 +39,6 @@ class InjectorIO {
     mode = mode;
     return io;
   }
-
-  InjectorMode get mode => _mode;
-  DefinitionRegistry get registry => _registry;
 
   /// Register a new dependency instance
   InjectorIO register(Definition d) {

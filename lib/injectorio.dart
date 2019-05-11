@@ -7,10 +7,10 @@ export 'package:injectorio/src/models.dart' show InjectorMode;
 export 'package:injectorio/src/io.dart' show InjectorIO;
 
 /// Register a singleton instance
-Definition<T> single<T>(T def) => IBinder.single(def);
+Definition<T> single<T>(T def) => IBinder.single<T>(def);
 
 /// Register a modifiable instance
-Definition<T> factory<T>(T def) => IBinder.factory(def);
+Definition<T> factory<T>(T def) => IBinder.factory<T>(def);
 
 /// Resolve Instance
-T get<T>() => IBinder.get();
+T get<T>() => IBinder.get<T>();
