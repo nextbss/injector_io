@@ -64,7 +64,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CountriesRepository _repository = get();
+  CountriesRepository _repository;
 
   @override
   void initState() {
@@ -76,11 +76,29 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: _repository.getCountries().isEmpty ?
+      Center( child: Text("Adicione Países!", style: TextStyle(fontSize: 24),),) :
+      ListView(
         children: _repository.getCountries().map((name){
-          return Text(name,);
+          return Container(
+            height: 100,
+              margin: EdgeInsets.all(8),
+              color: Colors.primaries[_repository.getCountries().indexOf(name)],
+              child: Text(name,),
+          );
         }).toList(),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          _repository.addCountry(Colors.primaries[Random().nextInt(10)].toString());
+          setState(() {});
+        },
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
