@@ -1,14 +1,33 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-
 import 'package:injectorio/injectorio.dart';
 
-import 'CountriesRepository.dart';
+class CountriesWebService{
+  List<String> countries = [];
+}
+
+class CountriesRepository{
+  final CountriesWebService webService;
+  CountriesRepository(this.webService);
+
+
+  List<String> getCountries() => webService.countries;
+  String getCountryByIndex(int index) => webService.countries.elementAt(index);
+
+  addCountry(String name) => webService.countries.add(name);
+}
+
+class AppModule extends Module{
+  AppModule(){
+    single(CountriesWebService()); // register a singleton of CountriesWebService
+    single( CountriesRepository( get())); // the library will take care of getting the instance of CountriesWebService
+  }
+}
 
 void main(){
   InjectorIO.start()
-  .register( single( CountriesRepository()));
+  .module( AppModule());
 
   runApp(MyApp());
 }
@@ -45,7 +64,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  CountriesRepository _repository;
+  CountriesRepository _repository = get();
 
   @override
   void initState() {
@@ -57,29 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: _repository.countries.isEmpty ?
-      Center( child: Text("Adicione Países!", style: TextStyle(fontSize: 24),),) :
-      ListView(
-        children: _repository.countries.map((name){
-          return Container(
-            height: 100,
-              margin: EdgeInsets.all(8),
-              color: Colors.primaries[_repository.countries.indexOf(name)],
-              child: Text(name,),
-          );
+      body: ListView(
+        children: _repository.getCountries().map((name){
+          return Text(name,);
         }).toList(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          _repository.addCountry(Colors.primaries[Random().nextInt(10)].toString());
-          setState(() {});
-        },
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
