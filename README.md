@@ -16,9 +16,7 @@ Now that you added the package lets see how to use it easily.
 
 ``` dart
 
-import 'package:simple_injector/module_injector.dart';
-import 'package:simple_injector/simple_injector.dart';
-
+import 'package:injectorio/injectorio.dart';
 
 void main(){
   InjectorIO.start()
@@ -30,7 +28,7 @@ void main(){
 
 In the example above we registered a singleton dependency instance of `CountriesRepository` class.
 
-All ready! you can now get your dependency by calling `get()`.
+All ready! you can now get your dependency by calling `get()` when you do so, the library will get the instance of that class registered previously.
 
 ``` dart
 
