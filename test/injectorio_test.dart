@@ -38,14 +38,16 @@ void main() {
 
   test('factory Definition should return diferent instances', (){
     InjectorIO.start()
-        .register( factory( B( A())));
+        .register( factory( A()));
 
-    B b1 = get();
-    b1.k = 1;
-    B b2 = get();
-    b2.k = 2;
+    A b1 = get();
+    b1.key = 1;
+    A b2 = get();
+    b2.key = 2;
 
-    assert(b1.k != b2.k);
+    print("B1: ${b1.key} B2: ${b2.key}");
+
+    assert(b1.key != b2.key);
     //assert(b1 != b2);
   });
 
