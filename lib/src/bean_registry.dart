@@ -62,7 +62,7 @@ class DefinitionRegistry{
       }
 
       _showGetFactoryInstance(T);
-      return _kInstances[T].instance;
+      return _kInstances[T].create();
     }
 
     throw _instanceNotFoundException(T);
