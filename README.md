@@ -1,6 +1,6 @@
 # Keeper - Dependency Injection for Flutter
 
-Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances.
+Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and Keeper will take car of the rest.
 
 ## Features
 - [x] Create singleton instances;

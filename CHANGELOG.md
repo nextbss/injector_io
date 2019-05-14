@@ -1,5 +1,6 @@
 ## [0.0.5] - 15/05/2019.
 
+* Package renamed from InjectorIO to Keeper
 * Breaking change on the library design
 
 ## [0.0.4] - 13/05/2019.
