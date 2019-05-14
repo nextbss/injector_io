@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:injectorio/injectorio.dart';
@@ -68,4 +69,16 @@ void main() {
     throwsA(()=> get<A>());
   });
 
+  test("throw if trying to register a Widget class", (){
+    InjectorIO.start()
+        .register( single( MyWidget()));
+  });
+
+}
+
+class MyWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container( );
+  }
 }
