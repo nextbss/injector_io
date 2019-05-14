@@ -17,6 +17,8 @@
 library bean_registry;
 
 import 'dart:collection';
+import 'package:flutter/material.dart';
+
 import 'models.dart';
 
 class DefinitionRegistry{
@@ -29,6 +31,10 @@ class DefinitionRegistry{
   final InjectorMode mode;
 
   void register(Definition def){
+    if(def.instance is Widget){
+      throw UnsupportedError("Class of type Widget are not supported.");
+    }
+
     switch(def.type) {
       case Kind.FACTORY:
         _showCreateFactory(def.instance);
