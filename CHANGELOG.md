@@ -3,18 +3,18 @@
 * Package renamed from InjectorIO to Keeper
 * Breaking change on the library design
 
-## [0.0.4] - 13/05/2019.
+## [0.0.4] - 12/05/2019.
 
 * Added Module support
 
-## [0.0.3] - 11/05/2019.
+## [0.0.3] - 12/05/2019.
 
 * Improved instance query
 
-## [0.0.2] - 9/05/2019.
+## [0.0.2] - 10/05/2019.
 
 * Added single instances support
 
-## [0.0.1] - 8/05/2019.
+## [0.0.1] - 10/05/2019.
 
 * First version.
