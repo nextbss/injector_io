@@ -48,7 +48,7 @@ class InjectorIO {
   /// Register a singleton instance
   InjectorIO single<T>(T def) => this._register(Definition(Kind.SINGLE, ()=> def));
 
-  /// Register a modifiable instance
+  /// Register a factory instance
   InjectorIO factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
 
 
