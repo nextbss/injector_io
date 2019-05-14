@@ -1,14 +1,62 @@
 # Injector IO
 
-Inject your dependencies easily and quickly.
+Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances.
 
 ## Features
 - [x] Create singleton instances;
-- [ ] Create factory instances (recreated every time it is called);
+- [X] Create factory instances (recreated every time it is called);
 - [x] Register instances using Module;
 - [x] Get instances from everywhere using get() function.
 
+## Core concepts
+- get() => Used to retrieve instance of a registered class
+- single() => Used to register a singleton instance. You will receive a the same instance every time you use get().
+- factory() => Used to register a factory instance. You will receive a new instance every time you use get().
+
 # Usage
+
+### Register Instances
+
+``` dart
+
+import 'package:injectorio/injectorio.dart';
+
+void main(){
+  InjectorIO.start()
+  .register( single( CountriesWebService()))
+  .register( factory( CountriesRepository( get()), ()=> CountriesRepository( get())));
+
+  runApp(MyApp());
+}
+```
+
+### Register Modules
+
+``` dart
+
+import 'package:injectorio/injectorio.dart';
+
+class CountriesWebService{}
+
+class CountriesRepository{
+  final CountriesWebService webService;
+  CountriesRepository(this.webService);
+}
+
+class AppModule extends Module{
+  AppModule(){
+    single( CountriesWebService()); // register a singleton of CountriesWebService
+    factory( CountriesRepository( get())); // the library will take care of getting the instance of CountriesWebService
+  }
+}
+
+void main(){
+  InjectorIO.start()
+  .module( AppModule());
+
+  runApp(MyApp());
+}
+```
 
 ### Example 1 - Basic
 Now that you added the package lets see how to use it easily.
@@ -84,7 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    _repository = get(); // resolve dependency in your initState()
+    _repository = get(); // resolve the dependency
   }
 
   @override
@@ -99,3 +147,9 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 ```
+
+## Help this Library
+
+#### :heart: Star :heart: the repo to support the project or :smile:[Follow Me](https://github.com/pedromassango).Thanks!
+
+#### Follow me on Twitter: [![Twitter Follow](https://img.shields.io/twitter/follow/pedromassangom.svg?style=social&label=Follow)](https://twitter.com/pedromassangom)
