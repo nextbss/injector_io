@@ -7,11 +7,15 @@ Inject your dependencies easily and quickly. Register in one place and use `get(
 - [X] Create factory instances (recreated every time it is called);
 - [x] Register instances using Module;
 - [x] Get instances from everywhere using get() function.
+- [x] We don't use reflection.
 
 ## Core concepts
-- get() => Used to retrieve instance of a registered class
+- get() => Used to resolve the instance of a registered class. This is what you will use most.
+- inject() => Used to resolve a dependency inside a Module.
 - single() => Used to register a singleton instance. You will receive a the same instance every time you use get().
 - factory() => Used to register a factory instance. You will receive a new instance every time you use get().
+
+NOTE: don't get confused with `get()` and `inject()`. Just remember this: If you are inside a Module and you want to resolve a dependency use `inject()`, but if you are out of a Module and want to resolve a dependency always use `get()`.
 
 # Usage
 
@@ -30,7 +34,7 @@ void main(){
 }
 ```
 
-### Register Modules
+### Register dependencies using Module
 
 ``` dart
 
@@ -46,7 +50,7 @@ class CountriesRepository{
 class AppModule extends Module{
   AppModule(){
     single( CountriesWebService()); // register a singleton of CountriesWebService
-    factory( CountriesRepository( get())); // the library will take care of getting the instance of CountriesWebService
+    factory( CountriesRepository( inject())); // the library will take care of getting the instance of CountriesWebService
   }
 }
 
@@ -110,7 +114,7 @@ class CountriesRepository{
 class AppModule extends Module{
   AppModule(){
     single(CountriesWebService()); // register a singleton of CountriesWebService
-    single( CountriesRepository( get())); // the library will take care of getting the instance of CountriesWebService
+    single( CountriesRepository( inject())); // the library will take care of getting the instance of CountriesWebService
   }
 }
 
@@ -127,6 +131,8 @@ After that you can now get your instances by using the `get()` function.
 ``` dart
 
 class _MyHomePageState extends State<MyHomePage> {
+  // This works
+  //final CountriesRepository repository = get();
   CountriesRepository _repository;
 
   @override
@@ -149,6 +155,13 @@ class _MyHomePageState extends State<MyHomePage> {
 ```
 
 ## Help this Library
+
+You can help or support by:
+
+- [X] Reporting a Bug;
+- [X] Making pull requests;
+- [X] Write a tutorial about this;
+- [X] :heart: Staring :heart: this repository;
 
 #### :heart: Star :heart: the repo to support the project or :smile:[Follow Me](https://github.com/pedromassango).Thanks!
 

@@ -28,7 +28,7 @@ class MyModule extends Module{
   MyModule(){
     single(A());
     single(B( A()));
-    single(C( A(), B( get())));
+    single(C( A(), B( inject())));
   }
 }
 
