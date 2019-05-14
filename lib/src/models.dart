@@ -15,9 +15,11 @@
  * limitations under the License.
  */
 
+library modules;
+
 enum Kind{ SINGLE, FACTORY }
 
-enum InjectorMode { DEBUG, PRODUCTION }
+enum KeepMode { DEBUG, PRODUCTION }
 
 class Definition<T>{
   final Kind type;

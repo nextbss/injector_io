@@ -1,7 +1,7 @@
 library module_injector;
 
 import 'dart:collection';
-import 'package:injectorio/src/models.dart';
+import 'models.dart';
 
 abstract class Module {
   LinkedHashMap<Type, Definition> _moduleDef = LinkedHashMap.identity();

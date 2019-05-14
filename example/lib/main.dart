@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:injectorio/injectorio.dart';
+import 'package:injectorio/keeper.dart';
 
 class CountriesWebService{
   List<String> countries = [];
@@ -26,7 +26,7 @@ class AppModule extends Module{
 }
 
 void main(){
-  InjectorIO.start()
+  Keeper.start()
   .module( AppModule());
 
   runApp(MyApp());

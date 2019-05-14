@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:injectorio/keeper.dart';
 
-import 'package:injectorio/injectorio.dart';
 
 class A{
   int key;
@@ -36,12 +36,12 @@ class MyModule extends Module{
 void main() {
 
   test("Define instances using Module", (){
-    InjectorIO.start()
+    Keeper.start()
         .module( MyModule());
   });
 
   test("single Definition should return same instance", (){
-    InjectorIO.start()
+    Keeper.start()
         .single( A())
         .single( B( get()));
 
@@ -52,7 +52,7 @@ void main() {
   });
 
   test('factory Definition should return diferent instances', (){
-    InjectorIO.start()
+    Keeper.start()
         .factory(()=> A());
 
     A b1 = get();
@@ -65,7 +65,7 @@ void main() {
   });
 
   test('reuse class instace between Definitions', () {
-    InjectorIO.start()
+    Keeper.start()
         .single( A())
         .factory( ()=> B( get()));
 
@@ -76,14 +76,14 @@ void main() {
   });
 
   test('throw error if no instance found', () {
-    InjectorIO.start()
+    Keeper.start()
         .factory( ()=> B( get()));
 
     throwsA(()=> get<A>());
   });
 
   test("throw if trying to register a Widget class", (){
-    InjectorIO.start()
+    Keeper.start()
         .single( MyWidget());
   });
 

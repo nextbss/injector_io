@@ -1,4 +1,4 @@
-# Injector IO
+# Keeper - Dependency Injection for Flutter
 
 Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances.
 
@@ -7,7 +7,8 @@ Inject your dependencies easily and quickly. Register in one place and use `get(
 - [X] Create factory instances (recreated every time it is called);
 - [x] Register instances using Module;
 - [x] Get instances from everywhere using get() function.
-- [x] We don't use reflection.
+- [x] Logs printed while in DEBUG mode.
+- [x] Don't use reflection.
 
 ## Core concepts
 - get() => Used to resolve the instance of a registered class. This is what you will use most.
@@ -23,10 +24,10 @@ NOTE: don't get confused with `get()` and `inject()`. Just remember this: If you
 
 ``` dart
 
-import 'package:injectorio/injectorio.dart';
+import 'package:keeper/keeper.dart';
 
 void main(){
-  InjectorIO.start()
+  Keeper.start()
   .single( CountriesWebService())
   .factory( CountriesRepository( get()), ()=> CountriesRepository( get()));
 
@@ -34,11 +35,28 @@ void main(){
 }
 ```
 
+### Enable/Disable Logs
+We can also provide printed logs while in development mode. The function `Keeper.start()` receive a `KeepMode` that can be:
+
+- [X] DEBUG - we will show logs
+- [X] PRODUCTION - we will disable logs. You will not see logs of this package in the console.
+
+The default value for this is DEBUG. If you don't want to see logs, just use the production mode:
+
+```dart
+//...
+
+Keeper.start(mode: KeepMode.PRODUCTION)
+.module( AppModule());
+
+//...
+```
+
 ### Register dependencies using Module
 
 ``` dart
 
-import 'package:injectorio/injectorio.dart';
+import 'package:keeper/keeper.dart';
 
 class CountriesWebService{}
 
@@ -55,7 +73,7 @@ class AppModule extends Module{
 }
 
 void main(){
-  InjectorIO.start()
+  Keeper.start()
   .module( AppModule());
 
   runApp(MyApp());
@@ -67,10 +85,10 @@ Now that you added the package lets see how to use it easily.
 
 ``` dart
 
-import 'package:injectorio/injectorio.dart';
+import 'package:keeper/keeper.dart';
 
 void main(){
-  InjectorIO.start()
+  Keeper.start()
   .single( CountriesRepository());
 
   runApp(MyApp());
@@ -94,7 +112,7 @@ Note that you can also use modules to register you  definitions. Check the examp
 
 ``` dart
 
-import 'package:injectorio/injectorio.dart';
+import 'package:keeper/keeper.dart';
 
 class CountriesWebService{
   List<String> countries = [];
@@ -119,7 +137,7 @@ class AppModule extends Module{
 }
 
 void main(){
-  InjectorIO.start()
+  Keeper.start()
   .module( AppModule()); // register your module
 
   runApp(MyApp());

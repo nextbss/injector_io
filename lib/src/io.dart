@@ -14,46 +14,46 @@
  * limitations under the License.
  */
 
-library injectorio;
+library keeper.io;
 
 import 'bean_registry.dart' show DefinitionRegistry;
 import 'models.dart';
 import 'module_injector.dart';
 export 'component_binder.dart';
 
-final InjectorIO io = InjectorIO._internal();
+final Keeper io = Keeper._internal();
 DefinitionRegistry get registry => io._registry;
 
-class InjectorIO {
+class Keeper {
   DefinitionRegistry _registry;
-  InjectorMode _mode = InjectorMode.DEBUG;
+  KeepMode _mode = KeepMode.DEBUG;
 
-  InjectorIO._internal(){
+  Keeper._internal(){
     _registry = DefinitionRegistry.build(_mode);
-    if(_mode == InjectorMode.DEBUG) {
+    if(_mode == KeepMode.DEBUG) {
       print("InjectorIO:::\t|-----INJECTOR IO-----|");
     }
   }
 
-  factory InjectorIO.start({InjectorMode mode = InjectorMode.DEBUG}){
+  factory Keeper.start({KeepMode mode = KeepMode.DEBUG}){
     mode = mode;
     return io;
   }
 
-  InjectorIO _register(Definition d) {
+  Keeper _register(Definition d) {
     _registry.register(d);
     return this;
   }
 
   /// Register a singleton instance
-  InjectorIO single<T>(T def) => this._register(Definition(Kind.SINGLE, ()=> def));
+  Keeper single<T>(T def) => this._register(Definition(Kind.SINGLE, ()=> def));
 
   /// Register a factory instance
-  InjectorIO factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
+  Keeper factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
 
 
   /// Register a new dependency module
-  InjectorIO module(Module module){
+  Keeper module(Module module){
     module.def().forEach((k, v)=> this._register(v));
     return this;
   }

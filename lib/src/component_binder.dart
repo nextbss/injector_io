@@ -16,7 +16,7 @@
 
 library component_binder;
 
-import 'package:injectorio/src/io.dart';
+import 'io.dart';
 
 /// Resolve Instance
 T get<T>() => registry.get<T>();
