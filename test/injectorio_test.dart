@@ -26,9 +26,9 @@ class Cf{
 
 class MyModule extends Module{
   MyModule(){
-    mSingle(A());
-    mSingle(B( A()));
-    mSingle(C( A(), B( mGet())));
+    single(A());
+    single(B( A()));
+    single(C( A(), B( get())));
   }
 }
 
@@ -42,8 +42,8 @@ void main() {
 
   test("single Definition should return same instance", (){
     InjectorIO.start()
-        .register( single( A()))
-        .register( single( B( get())));
+        .single( A())
+        .single( B( get()));
 
     A a1 = get();
     A a2 = get();
@@ -53,7 +53,7 @@ void main() {
 
   test('factory Definition should return diferent instances', (){
     InjectorIO.start()
-        .register( factory(()=> A()));
+        .factory(()=> A());
 
     A b1 = get();
     A b2 = get();
@@ -66,8 +66,8 @@ void main() {
 
   test('reuse class instace between Definitions', () {
     InjectorIO.start()
-        .register( single( A()))
-        .register( factory( ()=> B( get())));
+        .single( A())
+        .factory( ()=> B( get()));
 
     final A a = get();
     final B b = get();
@@ -77,14 +77,14 @@ void main() {
 
   test('throw error if no instance found', () {
     InjectorIO.start()
-        .register( factory( ()=> B( get())));
+        .factory( ()=> B( get()));
 
     throwsA(()=> get<A>());
   });
 
   test("throw if trying to register a Widget class", (){
     InjectorIO.start()
-        .register( single( MyWidget()));
+        .single( MyWidget());
   });
 
 }

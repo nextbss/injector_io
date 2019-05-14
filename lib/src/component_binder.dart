@@ -16,14 +16,7 @@
 
 library component_binder;
 
-import 'models.dart';
 import 'package:injectorio/src/io.dart';
-
-/// Register a singleton instance
-Definition<T> single<T>(T def) => Definition(Kind.SINGLE, ()=> def);
-
-/// Register a modifiable instance
-Definition<T> factory<T>(DefBuilder<T> defFunc) => Definition( Kind.FACTORY, defFunc);
 
 /// Resolve Instance
 T get<T>() => registry.get<T>();

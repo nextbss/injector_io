@@ -40,15 +40,21 @@ class InjectorIO {
     return io;
   }
 
-  /// Register a new dependency instance
-  InjectorIO register(Definition d) {
+  InjectorIO _register(Definition d) {
     _registry.register(d);
     return this;
   }
 
+  /// Register a singleton instance
+  InjectorIO single<T>(T def) => this._register(Definition(Kind.SINGLE, ()=> def));
+
+  /// Register a modifiable instance
+  InjectorIO factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
+
+
   /// Register a new dependency module
   InjectorIO module(Module module){
-    module.def().forEach((k, v)=> this.register(v));
+    module.def().forEach((k, v)=> this._register(v));
     return this;
   }
 }
