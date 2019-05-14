@@ -23,7 +23,7 @@ import 'package:injectorio/src/io.dart';
 Definition<T> single<T>(T def) => Definition(Kind.SINGLE, ()=> def);
 
 /// Register a modifiable instance
-Definition<T> factory<T>(T def, DefBuilder<T> defFunc) => Definition( Kind.FACTORY, defFunc);
+Definition<T> factory<T>(DefBuilder<T> defFunc) => Definition( Kind.FACTORY, defFunc);
 
 /// Resolve Instance
 T get<T>() => registry.get<T>();

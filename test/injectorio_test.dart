@@ -29,7 +29,8 @@ void main() {
 
   test("single Definition should return same instance", (){
     InjectorIO.start()
-        .register( single( A()));
+        .register( single( A()))
+        .register( single( B( get())));
 
     A a1 = get();
     A a2 = get();
@@ -39,7 +40,7 @@ void main() {
 
   test('factory Definition should return diferent instances', (){
     InjectorIO.start()
-        .register( factory( A(), ()=> A()));
+        .register( factory(()=> A()));
 
     A b1 = get();
     A b2 = get();
@@ -48,13 +49,12 @@ void main() {
     print("B1: ${b1.hashCode} B2: ${b2.hashCode} B3: ${b3.hashCode}");
 
     assert(b1.hashCode != b2.hashCode);
-    //assert(b1 != b2);
   });
 
   test('reuse class instace between Definitions', () {
     InjectorIO.start()
         .register( single( A()))
-        .register( factory( B( get()), ()=> B( get())));
+        .register( factory( ()=> B( get())));
 
     final A a = get();
     final B b = get();
@@ -64,7 +64,7 @@ void main() {
 
   test('throw error if no instance found', () {
     InjectorIO.start()
-        .register( factory( B( get()), ()=> B( get())));
+        .register( factory( ()=> B( get())));
 
     throwsA(()=> get<A>());
   });

@@ -7,7 +7,7 @@ abstract class Module {
   List<Definition> _moduleDef = [];
 
   void single<T>(T def) => _moduleDef.add( Definition<T>(Kind.SINGLE, () => def));
-  void factory<T>(T def) => _moduleDef.add( Definition(Kind.FACTORY, () => def));
+  void factory<T>(T def, DefBuilder<T> db) => _moduleDef.add( Definition<T>(Kind.FACTORY, db));
   T get<T>() => registry.get<T>();
 
   List<Definition> mDef() => _moduleDef;

@@ -31,10 +31,6 @@ class DefinitionRegistry{
   final InjectorMode mode;
 
   void register(Definition def){
-    if(def.instance is Widget){
-      throw UnsupportedError("Class of type Widget are not supported.");
-    }
-
     switch(def.type) {
       case Kind.FACTORY:
         _showCreateFactory(def.instance);
@@ -58,14 +54,13 @@ class DefinitionRegistry{
 
   T _getInstance<T>(T) {
     if (_kInstances.containsKey(T)) {
-      var i = _kInstances[T];
-      if(i.type == Kind.SINGLE) {
+      if(_kInstances[T].type == Kind.SINGLE) {
         _showGetSingleInstance(T);
         return _kInstances[T].instance;
       }
 
       _showGetFactoryInstance(T);
-      return i.creator();
+      return _kInstances[T].creator();
     }
 
     throw _instanceNotFoundException(T);

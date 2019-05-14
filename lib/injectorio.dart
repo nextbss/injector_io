@@ -11,7 +11,7 @@ export 'package:injectorio/src/io.dart' show InjectorIO;
 Definition<T> single<T>(T def) => IBinder.single<T>(def);
 
 /// Register a modifiable instance
-Definition<T> factory<T>(T def, DefBuilder<T> db) => IBinder.factory<T>(def, db);
+Definition<T> factory<T>(DefBuilder<T> db) => IBinder.factory<T>(db);
 
 /// Resolve Instance
 T get<T>() => IBinder.get<T>();
