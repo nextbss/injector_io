@@ -23,8 +23,8 @@ import 'package:injectorio/injectorio.dart';
 
 void main(){
   InjectorIO.start()
-  .register( single( CountriesWebService()))
-  .register( factory( CountriesRepository( get()), ()=> CountriesRepository( get())));
+  .single( CountriesWebService())
+  .factory( CountriesRepository( get()), ()=> CountriesRepository( get()));
 
   runApp(MyApp());
 }
@@ -67,7 +67,7 @@ import 'package:injectorio/injectorio.dart';
 
 void main(){
   InjectorIO.start()
-  .register( single( CountriesRepository()));
+  .single( CountriesRepository());
 
   runApp(MyApp());
 }
