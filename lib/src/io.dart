@@ -48,7 +48,7 @@ class InjectorIO {
 
   /// Register a new dependency module
   InjectorIO module(Module module){
-    module.mDef().forEach((d) => this.register(d));
+    module.def().forEach((k, v)=> this.register(v));
     return this;
   }
 }

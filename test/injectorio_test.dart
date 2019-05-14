@@ -24,8 +24,21 @@ class Cf{
 
 }
 
+class MyModule extends Module{
+  MyModule(){
+    mSingle(A());
+    mSingle(B( A()));
+    mSingle(C( A(), B( mGet())));
+  }
+}
+
 
 void main() {
+
+  test("Define instances using Module", (){
+    InjectorIO.start()
+        .module( MyModule());
+  });
 
   test("single Definition should return same instance", (){
     InjectorIO.start()

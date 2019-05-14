@@ -20,8 +20,8 @@ class CountriesRepository{
 
 class AppModule extends Module{
   AppModule(){
-    single(CountriesWebService()); // register a singleton of CountriesWebService
-    single( CountriesRepository( get())); // the library will take care of getting the instance of CountriesWebService
+    mSingle(CountriesWebService()); // register a singleton of CountriesWebService
+    mSingle( CountriesRepository( mGet())); // the library will take care of getting the instance of CountriesWebService
   }
 }
 
