@@ -22,7 +22,8 @@ enum InjectorMode { DEBUG, PRODUCTION }
 class Definition<T>{
   final Kind type;
   dynamic instance;
-  dynamic Function() create;
-  Definition(this.type, this.create):
-        instance = create();
+  DefBuilder<T> creator;
+  Definition(this.type, this.creator): instance = creator();
 }
+
+typedef DefBuilder<T> = T Function();

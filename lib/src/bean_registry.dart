@@ -55,14 +55,11 @@ class DefinitionRegistry{
       var i = _kInstances[T];
       if(i.type == Kind.SINGLE) {
         _showGetSingleInstance(T);
-        if(i.instance == null){
-          _kInstances[T].instance = i.create();
-        }
         return _kInstances[T].instance;
       }
 
       _showGetFactoryInstance(T);
-      return _kInstances[T].create();
+      return i.creator();
     }
 
     throw _instanceNotFoundException(T);
@@ -70,18 +67,16 @@ class DefinitionRegistry{
 
   Exception _instanceNotFoundException(T) => Exception(
         """Instance of $T not found. Make sure you added
-           it by using module or with [single()], [factory()] definition."""
+        it by using module or with [single()], [factory()] definition."""
   );
 
-  _show(String message){
-    if(mode == InjectorMode.DEBUG){
-      print("InjectorIO:::\t$message");
-    }
+  _log(String m){
+    if(mode == InjectorMode.DEBUG) print("InjectorIO:::\t$m");
   }
 
-  _showCreateSingle(Object t) => _show("+++ Register single\t${t.runtimeType}");
-  _showCreateFactory(Object t) => _show("+++ Register factory ${t.runtimeType}");
-  _showGetFactoryInstance(Object t) => _show("--- Get Factory $t");
-  _showGetSingleInstance(Object t) => _show("--- Get Single\t$t");
-  _showInstanceNotFound(Object t) => _show("!!!--- Instance of type $t not found ---!!!");
+  _showCreateSingle(Object t) => _log("+++ Register single\t${t.runtimeType}");
+  _showCreateFactory(Object t) => _log("+++ Register factory ${t.runtimeType}");
+  _showGetFactoryInstance(Object t) => _log("--- Get Factory $t");
+  _showGetSingleInstance(Object t) => _log("--- Get Single\t$t");
+  _showInstanceNotFound(Object t) => _log("!!!--- Instance of type $t not found ---!!!");
 }
