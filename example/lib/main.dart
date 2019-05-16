@@ -26,7 +26,7 @@ class AppModule extends Module{
 }
 
 void main(){
-  Keeper.start()
+  InjectorIO.start()
   .module( AppModule());
 
   runApp(MyApp());

@@ -19,7 +19,7 @@ library modules;
 
 enum Kind{ SINGLE, FACTORY }
 
-enum KeepMode { DEBUG, PRODUCTION }
+enum InjectorMode { DEBUG, PRODUCTION }
 
 class Definition<T>{
   final Kind type;

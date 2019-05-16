@@ -24,11 +24,11 @@ import 'models.dart';
 class DefinitionRegistry{
   DefinitionRegistry._internal(this.mode);
   final LinkedHashMap<Type, Definition> _kInstances = LinkedHashMap.identity();
-  factory DefinitionRegistry.build(KeepMode mode){
+  factory DefinitionRegistry.build(InjectorMode mode){
     return DefinitionRegistry._internal(mode);
   }
 
-  final KeepMode mode;
+  final InjectorMode mode;
 
   void register(Definition def){
     if(def.instance is Widget){
@@ -76,7 +76,7 @@ class DefinitionRegistry{
   );
 
   _log(String m){
-    if(mode == KeepMode.DEBUG) print("InjectorIO:::\t$m");
+    if(mode == InjectorMode.DEBUG) print("InjectorIO:::\t$m");
   }
 
   _showCreateSingle(Object t) => _log("+++ Register single\t${t.runtimeType}");
