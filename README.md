@@ -1,5 +1,8 @@
 # InjectorIO - Dependency Injection for Flutter
 
+[![Pub](https://img.shields.io/pub/v/dio.svg?style=flat-square)](https://pub.dev/packages/injectorio)
+[![support](https://img.shields.io/badge/platform-flutter%7Cdart%20vm-ff69b4.svg?style=flat-square)](https://github.com/pedromassango/injector_io)
+
 Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and `InjectorIO` will take car of the rest.
 
 ## Features
