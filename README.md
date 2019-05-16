@@ -1,20 +1,22 @@
 # InjectorIO - Dependency Injection for Flutter
 
-Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and InjectorIO will take car of the rest.
+Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and `InjectorIO` will take car of the rest.
 
 ## Features
+
 - [x] Create singleton instances;
 - [X] Create factory instances (recreated every time it is called);
 - [x] Register instances using Module;
-- [x] Get instances from everywhere using get() function.
+- [x] Get instances from everywhere using `get()` function.
 - [x] Logs printed while in DEBUG mode.
 - [x] Don't use reflection.
 
+
 ## Core concepts
-- get() => Used to resolve the instance of a registered class. This is what you will use most.
-- inject() => Used to resolve a dependency inside a Module.
-- single() => Used to register a singleton instance. You will receive a the same instance every time you use get().
-- factory() => Used to register a factory instance. You will receive a new instance every time you use get().
+- **get()** => Used to resolve the instance of a registered class. This is what you will use most.
+- **inject()** => Used to resolve a dependency inside a Module.
+- **single()** => Used to register a singleton instance. You will receive a the same instance every time you use get().
+- **factory()** => Used to register a factory instance. You will receive a new instance every time you use get().
 
 NOTE: don't get confused with `get()` and `inject()`. Just remember this: If you are inside a Module and you want to resolve a dependency use `inject()`, but if you are out of a Module and want to resolve a dependency always use `get()`.
 
@@ -179,7 +181,7 @@ You can help or support by:
 - [X] Reporting a Bug;
 - [X] Making pull requests;
 - [X] Write a tutorial about this;
-- [X] :heart: Staring :heart: this repository;
+- [X] :heart: Staring this repository;
 
 #### :heart: Star the repo to support the project or :smile:[Follow Me](https://github.com/pedromassango).Thanks!
 
