@@ -12,5 +12,5 @@ abstract class Module {
   /// Resolve a dependency's instance inside of a Module
   T inject<T>() => _moduleDef[T].type == Kind.SINGLE ? _moduleDef[T].instance : _moduleDef[T].creator();
 
-  LinkedHashMap<Type, Definition> def() => _moduleDef;
+  LinkedHashMap<Type, Definition> kDef() => _moduleDef;
 }
