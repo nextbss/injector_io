@@ -1,3 +1,11 @@
+## [1.0.0] - 19/05/2019.
+
+* Stable version
+
+## [0.1.0] - 19/05/2019.
+
+* Docs updated
+
 ## [0.0.5] - 15/05/2019.
 
 * Breaking change on the library design

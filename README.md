@@ -12,6 +12,7 @@ Inject your dependencies easily and quickly. Register in one place and use `get(
 - [x] Register instances using Module;
 - [x] Get instances from everywhere using `get()` function.
 - [x] Logs printed while in DEBUG mode.
+- [x] Easy to test.
 - [x] Don't use reflection.
 
 
@@ -85,7 +86,7 @@ void main(){
 }
 ```
 
-### Example 1 - Basic
+### Basic Sample
 Now that you added the package lets see how to use it easily.
 
 ``` dart
@@ -94,9 +95,27 @@ import 'package:injectorio/injectorio.dart';
 
 void main(){
   InjectorIO.start()
-  .single( CountriesRepository());
+  .single( CountriesRepository()); // register a instance
 
   runApp(MyApp());
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // This works
+  //final CountriesRepository repository = get();
+
+  CountriesRepository _repository;
+
+  @override
+  void initState() {
+    super.initState();
+    _repository = get(); // resolve the dependency
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
 }
 ```
 

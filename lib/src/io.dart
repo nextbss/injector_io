@@ -52,7 +52,7 @@ class InjectorIO {
   InjectorIO factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
 
 
-  /// Register a new dependency module
+  /// Register a new module dependency
   InjectorIO module(Module module){
     module.def().forEach((k, v)=> this._register(v));
     return this;
