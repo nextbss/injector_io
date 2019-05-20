@@ -28,14 +28,14 @@ class InjectorIO {
   DefinitionRegistry _registry;
   InjectorMode _mode = InjectorMode.DEBUG;
 
-  InjectorIO._internal(){
+  InjectorIO._internal() {
     _registry = DefinitionRegistry.build(_mode);
-    if(_mode == InjectorMode.DEBUG) {
+    if (_mode == InjectorMode.DEBUG) {
       print("InjectorIO:::\t|-----INJECTOR IO-----|");
     }
   }
 
-  factory InjectorIO.start({InjectorMode mode = InjectorMode.DEBUG}){
+  factory InjectorIO.start({InjectorMode mode = InjectorMode.DEBUG}) {
     mode = mode;
     return io;
   }
@@ -46,14 +46,15 @@ class InjectorIO {
   }
 
   /// Register a singleton instance
-  InjectorIO single<T>(T def) => this._register(Definition(Kind.SINGLE, ()=> def));
+  InjectorIO single<T>(T def) =>
+      this._register(Definition(Kind.SINGLE, () => def));
 
   /// Register a factory instance
-  InjectorIO factory<T>(DefBuilder<T> defFunc) => this._register(Definition( Kind.FACTORY, defFunc));
-
+  InjectorIO factory<T>(DefBuilder<T> defFunc) =>
+      this._register(Definition(Kind.FACTORY, defFunc));
 
   /// Register a new module dependency
-  InjectorIO module(Module module){
+  InjectorIO module(Module module) {
     module.kDef().forEach((_, v) => this._register(v));
     return this;
   }

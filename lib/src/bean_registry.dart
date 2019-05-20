@@ -21,36 +21,36 @@ import 'package:flutter/material.dart';
 
 import 'models.dart';
 
-class DefinitionRegistry{
+class DefinitionRegistry {
   DefinitionRegistry._internal(this.mode);
   final LinkedHashMap<Type, Definition> _kInstances = LinkedHashMap.identity();
-  factory DefinitionRegistry.build(InjectorMode mode){
+  factory DefinitionRegistry.build(InjectorMode mode) {
     return DefinitionRegistry._internal(mode);
   }
 
   final InjectorMode mode;
 
-  void register(Definition def){
-    if(def.instance is Widget){
+  void register(Definition def) {
+    if (def.instance is Widget) {
       throw UnsupportedError("Class of type Widget are not supported.");
     }
 
-    switch(def.type) {
+    switch (def.type) {
       case Kind.FACTORY:
         _showCreateFactory(def.instance);
         _kInstances[def.instance.runtimeType] = def;
-      break;
+        break;
       case Kind.SINGLE:
         _showCreateSingle(def.instance);
         _kInstances[def.instance.runtimeType] = def;
-      break;
+        break;
     }
   }
 
-  T get<T>(){
+  T get<T>() {
     try {
       return _getInstance(T);
-    } catch(e){
+    } catch (e) {
       _showInstanceNotFound(T);
       throw _instanceNotFoundException(T);
     }
@@ -58,7 +58,7 @@ class DefinitionRegistry{
 
   T _getInstance<T>(T) {
     if (_kInstances.containsKey(T)) {
-      if(_kInstances[T].type == Kind.SINGLE) {
+      if (_kInstances[T].type == Kind.SINGLE) {
         _showGetSingleInstance(T);
         return _kInstances[T].instance;
       }
@@ -70,18 +70,18 @@ class DefinitionRegistry{
     throw _instanceNotFoundException(T);
   }
 
-  Exception _instanceNotFoundException(T) => Exception(
-        """Instance of $T not found. Make sure you added
-        it by using module or with [single()], [factory()] definition."""
-  );
+  Exception _instanceNotFoundException(T) =>
+      Exception("""Instance of $T not found. Make sure you added
+        it by using module or with [single()], [factory()] definition.""");
 
-  _log(String m){
-    if(mode == InjectorMode.DEBUG) print("InjectorIO:::\t$m");
+  _log(String m) {
+    if (mode == InjectorMode.DEBUG) print("InjectorIO:::\t$m");
   }
 
   _showCreateSingle(Object t) => _log("+++ Register single\t${t.runtimeType}");
   _showCreateFactory(Object t) => _log("+++ Register factory ${t.runtimeType}");
   _showGetFactoryInstance(Object t) => _log("--- Get Factory $t");
   _showGetSingleInstance(Object t) => _log("--- Get Single\t$t");
-  _showInstanceNotFound(Object t) => _log("!!!--- Instance of type $t not found ---!!!");
+  _showInstanceNotFound(Object t) =>
+      _log("!!!--- Instance of type $t not found ---!!!");
 }

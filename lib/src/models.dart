@@ -1,4 +1,3 @@
-
 /*
  * Copyright 2019 Pedro Massango.
  *
@@ -17,15 +16,15 @@
 
 library modules;
 
-enum Kind{ SINGLE, FACTORY }
+enum Kind { SINGLE, FACTORY }
 
 enum InjectorMode { DEBUG, PRODUCTION }
 
-class Definition<T>{
+class Definition<T> {
   final Kind type;
   dynamic instance;
   DefBuilder<T> creator;
-  Definition(this.type, this.creator): instance = creator();
+  Definition(this.type, this.creator) : instance = creator();
 }
 
 typedef DefBuilder<T> = T Function();
