@@ -130,5 +130,3 @@ You can help/support by:
 - [X] Making pull request;
 - [X] Write a tutorial about this;
 - [X] :heart: Staring this repository;
-
-#### :heart: Star the repo to support the project or :smile:[Follow Me](https://github.com/pedromassango).Thanks!
