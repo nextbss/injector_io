@@ -3,19 +3,18 @@
 [![Pub](https://img.shields.io/pub/v/injectorio.svg?style=flat-square)](https://pub.dev/packages/injectorio)
 [![support](https://img.shields.io/badge/platform-flutter%7Cdart%20vm-ff69b4.svg?style=flat-square)](https://github.com/pedromassango/injector_io)
 
-Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and `InjectorIO` will take car of the rest.
+Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and `InjectorIO` will take care of the rest.
 
 ## Features
 
 - [x] Create singleton instances;
-- [X] Create factory instances (recreated every time it is called);
+- [X] Create factory instances (recreated on every call);
 - [x] Register instances using Module;
-- [x] Get instances from everywhere using `get()` function.
+- [x] Get instances from anywhere using the `get()` function.
 - [x] Logs printed while in DEBUG mode.
 - [x] Easy to test.
-- [x] Don't use reflection.
-- [x] InjectorIO prevent you to not keep instances of classes that extends Widget.
-
+- [x] Doesn't use reflection.
+- [x] InjectorIO prevents you from keeping instances of classes that extends Widget.
 
 ## Core concepts
 - **get()** => Used to resolve the instance of a registered class. This is what you will use most.
@@ -23,7 +22,7 @@ Inject your dependencies easily and quickly. Register in one place and use `get(
 - **single()** => Used to register a singleton instance. You will receive a the same instance every time you use get().
 - **factory()** => Used to register a factory instance. You will receive a new instance every time you use get().
 
-NOTE: don't get confused with `get()` and `inject()`. Just remember this: If you are inside a Module and you want to resolve a dependency use `inject()`, but if you are out of a Module and want to resolve a dependency always use `get()`.
+NOTE: don't get confused with `get()` and `inject()`. Just remember this: If you are inside a Module and you want to resolve a dependency use `inject()`, but if you are not within a Module always use `get()`.
 
 # Usage
 
@@ -43,7 +42,7 @@ void main(){
 
 class _MyHomePageState extends State<MyHomePage> {
   // This works
-  //final CountriesRepository repository = get();
+  // final CountriesRepository repository = get();
 
   CountriesRepository _repository;
 
@@ -107,12 +106,12 @@ void main(){
 
 
 ### Enable/Disable Logs
-InjectorIO can also provide printed logs while in development mode. The function `InjectorIO.start()` receive a `InjectorMode` that can be:
+InjectorIO can also provide printed logs while in development mode. The function `InjectorIO.start()` receives a `InjectorMode` that can be:
 
-- [X] DEBUG - we will show logs
-- [X] PRODUCTION - we will disable logs. You will not see logs of this package in the console.
+- [X] DEBUG - Displays logs
+- [X] PRODUCTION - Disables logs. You will not see logs from this package in the console.
 
-The default value for this is DEBUG. If you don't want to see logs, just use the production mode:
+The default value for this is DEBUG. If you don't want to see logs, just use production mode:
 
 ```dart
 //...
@@ -128,8 +127,6 @@ InjectorIO.start(mode: InjectorMode.PRODUCTION)
 You can help/support by:
 
 - [X] Reporting a Bug;
-- [X] Making pull requests;
+- [X] Making pull request;
 - [X] Write a tutorial about this;
 - [X] :heart: Staring this repository;
-
-#### :heart: Star the repo to support the project or :smile:[Follow Me](https://github.com/pedromassango).Thanks!
