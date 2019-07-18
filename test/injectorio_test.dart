@@ -3,28 +3,28 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:injectorio/injectorio.dart';
 
-class A{
+class A {
   int key;
   A();
 }
 
-class B{
+class B {
   final A a;
   int k;
   B(this.a);
 }
 
-class C{
+class C {
   final A a;
   final B b;
   C(this.a, this.b);
 }
 
-class Cf{
+class Cf {
 
 }
 
-class MyModule extends Module{
+class MyModule extends Module {
   MyModule(){
     single(A());
     single(B( A()));
@@ -35,12 +35,12 @@ class MyModule extends Module{
 
 void main() {
 
-  test("Define instances using Module", (){
+  test("Define instances using Module", () {
     InjectorIO.start()
         .module( MyModule());
   });
 
-  test("single Definition should return same instance", (){
+  test("single Definition should return same instance", () {
     InjectorIO.start()
         .single( A())
         .single( B( get()));
@@ -51,7 +51,7 @@ void main() {
     assert(a1 == a2);
   });
 
-  test('factory Definition should return diferent instances', (){
+  test('factory Definition should return diferent instances', () {
     InjectorIO.start()
         .factory(()=> A());
 
@@ -82,7 +82,7 @@ void main() {
     throwsA(()=> get<A>());
   });
 
-  test("throw if trying to register a Widget class", (){
+  test("throw if trying to register a Widget class", () {
     InjectorIO.start()
         .single( MyWidget());
   });
@@ -90,6 +90,7 @@ void main() {
 }
 
 class MyWidget extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Container( );
