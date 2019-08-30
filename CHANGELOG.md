@@ -1,3 +1,6 @@
+## [1.0.2] - 29/08/2019
+* Added logs for debugging purposes and replaced print messages
+
 ## [1.0.1] - 20/05/2019.
 
 * code formatted

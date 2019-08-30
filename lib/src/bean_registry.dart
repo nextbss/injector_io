@@ -20,6 +20,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 
 import 'models.dart';
+import 'package:logger/logger.dart';
 
 class DefinitionRegistry {
   DefinitionRegistry._internal(this.mode);
@@ -29,6 +30,10 @@ class DefinitionRegistry {
   }
 
   final InjectorMode mode;
+
+  var logger = Logger(
+  printer: PrettyPrinter(),
+);
 
   void register(Definition def) {
     if (def.instance is Widget) {
@@ -75,7 +80,7 @@ class DefinitionRegistry {
         it by using module or with [single()], [factory()] definition.""");
 
   _log(String m) {
-    if (mode == InjectorMode.DEBUG) print("InjectorIO:::\t$m");
+    if (mode == InjectorMode.DEBUG) logger.d("InjectorIO:::\t$m");
   }
 
   _showCreateSingle(Object t) => _log("+++ Register single\t${t.runtimeType}");
