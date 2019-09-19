@@ -1,6 +1,10 @@
-## [1.0.2] - 20/09/2019
+## [1.0.3] - 20/09/2019
 
 * Removed the required instance definition for factory instances inside a Module
+
+## [1.0.2] - 29/08/2019
+
+* Added logs for debugging purposes and replaced print messages
 
 ## [1.0.1] - 20/05/2019
 
