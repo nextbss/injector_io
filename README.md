@@ -66,10 +66,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
 import 'package:injectorio/injectorio.dart';
 
-void main(){
+void main() {
   InjectorIO.start()
-  .single( CountriesWebService())
-  .factory( CountriesRepository( get()), ()=> CountriesRepository( get()));
+  .single(CountriesWebService())
+  .factory(() => CountriesRepository(get()));
 
   runApp(MyApp());
 }
@@ -90,15 +90,15 @@ class CountriesRepository{
 }
 
 class AppModule extends Module{
-  AppModule(){
+  AppModule() {
     single( CountriesWebService()); // register a singleton of CountriesWebService
-    factory( CountriesRepository( inject())); // the library will take care of getting the instance of CountriesWebService
+    factory(CountriesRepository(inject())); // the library will take care of getting the instance of CountriesWebService
   }
 }
 
 void main(){
   InjectorIO.start()
-  .module( AppModule());
+  .module(AppModule());
 
   runApp(MyApp());
 }
@@ -114,12 +114,8 @@ InjectorIO can also provide printed logs while in development mode. The function
 The default value for this is DEBUG. If you don't want to see logs, just use production mode:
 
 ```dart
-//...
-
 InjectorIO.start(mode: InjectorMode.PRODUCTION)
 .module( AppModule());
-
-//...
 ```
 
 ## Help this Library
