@@ -1,6 +1,6 @@
 name: injectorio
 description: Inject your dependencies easily and quickly. Register in one place and use `get()` everywhere to retrieve your instances and Keeper will take car of the rest.
-version: 1.0.2
+version: 1.0.3
 author: Pedro Massango<pedromassango.developer@gmail.com>
 homepage: https://github.com/pedromassango/injector_io
 
