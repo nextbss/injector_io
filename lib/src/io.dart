@@ -35,20 +35,22 @@ class InjectorIO {
 
   InjectorIO._internal() {
     _registry = DefinitionRegistry.build(_mode);
-    if (_mode == InjectorMode.DEBUG) {
-      logger.d("InjectorIO:::\t|-----INJECTOR IO-----|");
-    }
   }
 
   factory InjectorIO.start({InjectorMode mode = InjectorMode.DEBUG}) {
-    mode = mode;
-    logger.d("Initiated InjectorIO in mode: $mode");
+    io._mode = mode;
+    io._registry = DefinitionRegistry.build(mode);
+    if (mode == InjectorMode.DEBUG) {
+      logger.d("Initiated InjectorIO in mode: $mode");
+    }
     return io;
   }
 
   InjectorIO _register(Definition d) {
     _registry.register(d);
-    logger.d("Registered definition : $d");
+    if (_mode == InjectorMode.DEBUG) {
+      logger.d("Registered definition : $d");
+    }
     return this;
   }
 
@@ -63,7 +65,9 @@ class InjectorIO {
   /// Register a new module dependency
   InjectorIO module(Module module) {
     module.kDef().forEach((_, v) => this._register(v));
-    logger.d("Succesfully registered module : $module");
+    if (_mode == InjectorMode.DEBUG) {
+      logger.d("Succesfully registered module : $module");
+    }
     return this;
   }
 }
