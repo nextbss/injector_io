@@ -1,3 +1,7 @@
+## [1.0.4] - 16/09/2019
+
+* Fixed logging issue: disabled logging in production mode
+
 ## [1.0.3] - 20/09/2019
 
 * Removed the required instance definition for factory instances inside a Module
