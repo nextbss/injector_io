@@ -1,3 +1,7 @@
+## [1.0.5] - 16/09/2019
+
+* Updated SDK version to 2.2.2
+
 ## [1.0.4] - 16/09/2019
 
 * Fixed logging issue: disabled logging in production mode

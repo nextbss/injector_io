@@ -20,10 +20,10 @@ enum Kind { SINGLE, FACTORY }
 
 enum InjectorMode { DEBUG, PRODUCTION }
 
-class Definition<T> {
+class Definition {
   final Kind type;
-  dynamic instance;
-  DefBuilder<T> creator;
+  final dynamic instance;
+  final DefBuilder creator;
   Definition(this.type, this.creator) : instance = creator();
 }
 

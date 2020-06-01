@@ -24,7 +24,7 @@ import 'package:logger/logger.dart';
 
 class DefinitionRegistry {
   DefinitionRegistry._internal(this.mode);
-  final LinkedHashMap<Type, Definition> _kInstances = LinkedHashMap.identity();
+  final LinkedHashMap<Type, Definition> _kInstances = LinkedHashMap();
   factory DefinitionRegistry.build(InjectorMode mode) {
     return DefinitionRegistry._internal(mode);
   }
